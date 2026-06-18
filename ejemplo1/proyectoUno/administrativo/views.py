@@ -53,15 +53,9 @@ def listadoEstudiantesPersonalizado(request):
     Listar los estudiantes mostrando solo el nombre
     y el número de teléfonos asociados a cada uno.
     """
-    # Se usa annotate para contar los teléfonos asociados
-    # a cada estudiante en una sola consulta
-    estudiantes = Estudiante.objects.annotate(
-        num_telefonos=Count('mis_numeros_telefonicos')
-    )
+    estudiantes = Estudiante.objects.all()
     titulo = "Listado personalizado de estudiantes"
-    informacion_template = {
-        'estudiantes': estudiantes,
-        'numero_estudiantes': len(estudiantes),
-        'mititulo': titulo
-    }
+    informacion_template = {'estudiantes': estudiantes,
+    'numero_estudiantes': len(estudiantes), 'mititulo': titulo}
     return render(request, 'listadoEstudiantesPersonalizado.html', informacion_template)
+    
